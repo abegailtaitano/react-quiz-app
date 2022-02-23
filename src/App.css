@@ -1,38 +1,28 @@
-.App {
+.App{
   text-align: center;
+  font-family: Arial;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* The answer selecteed by the user */
+.selected {
+  background-color: orange;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* The list of options */
+.options {
+  padding: 8px;
+  border: 2px solid #000;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul {
+  list-style-type: none;
 }
 
-.App-link {
-  color: #61dafb;
+body{
+  font-family: Verdana;
+  font-size: 18px;
+  background-color: #2980B9; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
