@@ -14,7 +14,7 @@ export class Quiz extends Component {
         score: 0,        //holds the score
         disabled: true   // determines the status of the buttons
     }
-  }
+}
   
   //Component that holds the current quiz
 loadQuiz = () => {
@@ -30,18 +30,18 @@ loadQuiz = () => {
 
 nextQuestionHandler = () => {
     const {userAnswer, answer, score} = this.state
-    this.setState({
-        currentIndex: this.state.currentIndex + 1
-    })
-    //Check if correct answer and increment score
-    if(userAnswer === answer){
+     if(userAnswer === answer){
         this.setState({
             score: score + 1
         })
+        console.log(score)
     }
+  
+    //Check if correct answer and increment score
+   
     this.setState({
         currentIndex: this.state.currentIndex + 1,
-        userAnser: null
+        userAnswer: null
     })
 }
 
@@ -51,13 +51,14 @@ nextQuestionHandler = () => {
     
     //Check the answer
 checkAnswer = answer => {
+    console.log(answer)
     this.setState({
         userAnswer: answer,
         disabled:false
     })
 }
 
-componentDidUpdate(prevProps, prevState) {
+componentDidUpdate(_prevProps, prevState) {
     const{currentIndex} = this.state;
     if(this.state.currentIndex !== prevState.currentIndex) {
         this.setState(() => {
@@ -72,18 +73,18 @@ componentDidUpdate(prevProps, prevState) {
 }
 
 finishHandler =() => {
-    if(this.state.currentIndex === QuizData.length -1){
+    if(this.state.currentIndex === QuizData.length -1) {
         this.setState({
             quizEnd:true
         })
     }
 }
     render() {
-    const{question, options, currentIndex, userAnswer, quizEnd} = this.state
+    const{question, options, currentIndex, userAnswer, quizEnd, score} = this.state
     if(quizEnd) {
         return (
             <div>
-                <h1>Game Over. Final score is {this.state.score} points</h1>
+                <h1>Game Over. Final score is {score} points</h1>
                 <p>The correct Answers for the quiz are</p>
                 <ul>
                     {QuizData.map((item, index) => (
@@ -103,9 +104,9 @@ finishHandler =() => {
           <span>{`Question ${currentIndex + 1} of ${QuizData.length}`}</span>
           {
               options.map(option => 
-                <p key = {option.id} className={`options ${userAnswer === option? "selected" : null}`} 
+                <p key = {option.index} className={`options ${userAnswer === option? "selected" : null}`} 
                onClick = {() => this.checkAnswer(option)}
-               >
+               > 
                 {option}
                 </p>
               )

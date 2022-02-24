@@ -1,32 +1,32 @@
 export const QuizData = [
     {
-        id: 0,
-        question: `What is the capital of Nigeria?`,
-        options: [`New Delhi`, `Abuja`, `Owerri`, `Enugu`],
-        answer: `Abuja`
+        id: 1,
+        question: `What does HTML stand for?`,
+        options: [`Hyperlink Mark Logistics`, `Hypertext Markup Language`, `Hypertext Mark Language`, `Hyperlink Markup Logic`],
+        answer: `Hypertext Markup Language`
     },
     {
-        id: 0,
-        question: `What is the capital of India?`,
-        options: [`New Delhi`, `Abuja`, `Mumbai`, `Aba`],
-        answer: `New Delhi`
+        id: 2,
+        question: `What does OS stand for?`,
+        options: [`Operating System`, `Operative System`, `Operating Solutions`, `Operative Solutions`],
+        answer: `Operating System`
     },
     {
-        id: 0,
-        question: `What is the capital of Australia?`,
-        options: [`Melbourne`, `Akokwa`, `Owerri`, `Sydney`],
-        answer: `Sydney`
+        id: 3,
+        question: `What does HTTP stand for?`,
+        options: [`Hypertext Transmit Protocol`, `Hypertext Transfer Prosystems`, `Hypertext Transfer Problem`, `Hypertext Transfer Protocol`],
+        answer: `Hypertext Transfer Protocol`
     },
     {
-        id: 0,
-        question: `What is the capital of Turkey?`,
-        options: [`Rijadh`, `Ankara`, `Istanbul`, `Abakaliki`],
-        answer: `Ankara`
+        id: 4,
+        question: `What does RAM stand for?`,
+        options: [`Randomized Access Memory`, `Random Access Memory`, `Random Active Memo`, `Random Activity Memory`],
+        answer: `Random Access Memory`
     },
     {
-        id: 0,
-        question: `What is the capital of Syria?`,
-        options: [`Syria`, `Damascus`, `Anambra`, `Enugu`],
-        answer: `Damascus`
+        id: 5,
+        question: `What does SSD stand for in regards to computer storage?`,
+        options: [`Solid Static Drive`, `Solid State Drive`, `Solid Statistical Drive`, `Solid Stat Driver`],
+        answer: `Solid State Drive`
     },
 ]
