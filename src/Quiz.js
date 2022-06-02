@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { QuizData } from "./QuizData";
+import { QuizEnd } from "./QuizEnd";
 import "./App.css";
+import axios from "axios";
 
 export class Quiz extends Component {
+  QuizData = [];
   constructor(props) {
     super(props);
 
@@ -18,12 +20,13 @@ export class Quiz extends Component {
 
   //Component that holds the current quiz
   loadQuiz = () => {
+    console.log(this.QuizData);
     const { currentIndex } = this.state; //get the current question index
     this.setState(() => {
       return {
-        question: QuizData[currentIndex].question,
-        options: QuizData[currentIndex].options,
-        answer: QuizData[currentIndex].answer,
+        question: this.QuizData[currentIndex].question,
+        options: this.QuizData[currentIndex].options,
+        answer: this.QuizData[currentIndex].answer,
       };
     });
   };
@@ -42,8 +45,15 @@ export class Quiz extends Component {
     });
   };
   componentDidMount() {
+    if(this.QuizData.length === 0) {
+    this.QuizData = axios.get('http://localhost:3000/api/questionRoutes/getQuestions')
+
+
+    }
+    setTimeout(2000)
     this.loadQuiz();
   }
+
 
   //Check the answer
   checkAnswer = (answer) => {
@@ -59,9 +69,9 @@ export class Quiz extends Component {
     if (this.state.currentIndex != prevState.currentIndex) {
       this.setState(() => {
         return {
-          question: QuizData[currentIndex].question,
-          options: QuizData[currentIndex].options,
-          answer: QuizData[currentIndex].answer,
+          question: this.QuizData[currentIndex].question,
+          options: this.QuizData[currentIndex].options,
+          answer: this.QuizData[currentIndex].answer,
         };
       });
     }
@@ -75,7 +85,7 @@ export class Quiz extends Component {
       });
     }
 
-    if (this.state.currentIndex === QuizData.length - 1) {
+    if (this.state.currentIndex === this.QuizData.length - 1) {
       this.setState({
         quizEnd: true,
       });
@@ -89,7 +99,7 @@ export class Quiz extends Component {
           <h1>Game Over. Final score is {this.state.score} points</h1>
           <p>The correct Answers for the quiz are</p>
           <ul>
-            {QuizData.map((item, index) => (
+            {this.QuizData.map((item, index) => (
               <li className="ui floating message options" key={index}>
                 {item.answer}
               </li>
@@ -102,7 +112,7 @@ export class Quiz extends Component {
     return (
       <div>
         <h2>{question}</h2>
-        <span>{`Question ${currentIndex + 1} of ${QuizData.length}`}</span>
+        <span>{`Question ${currentIndex + 1} of ${this.QuizData.length}`}</span>
         {options.map((option) => (
           <p
             key={option.id}
@@ -112,7 +122,7 @@ export class Quiz extends Component {
             {option}
           </p>
         ))}
-        {currentIndex < QuizData.length - 1 && (
+        {currentIndex < this.QuizData.length - 1 && (
           <button
             disabled={this.state.disabled}
             onClick={this.nextQuestionHandler}
@@ -120,7 +130,7 @@ export class Quiz extends Component {
             Next Question
           </button>
         )}
-        {currentIndex === QuizData.length - 1 && (
+        {currentIndex === this.QuizData.length - 1 && (
           <button onClick={this.finishHandler} disabled={this.state.disabled}>
             Finish
           </button>
